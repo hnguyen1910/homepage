@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="field">
+	<button class="button" id="btndecode">
+		Giải mã base64
+	</button>
+	<button class="button" id="btnencode">
+		Mã hoá base64
+	</button>
+</div>
+<div id="decode" style="display:none;">
+	<h3>Giải mã base64</h3>
+	<div class="field" id="decode">
+		<label class="label" for="decodefield">Đầu vào:</label>
+		<div class="control">
+			<textarea class="textarea" placeholder="Nhập(hoặc dán) chữ vào đây..." id="decodefield"></textarea>
+		</div>
+	</div>
+</div>
+<div id="encode" style="display:none;">
+	<h3>Mã hoá base64</h3>
+	<div class="field" id="encode">
+		<label class="label" for="encodefield">Đầu vào:</label>
+		<div class="control">
+			<textarea class="textarea" placeholder="Nhập(hoặc dán) chữ vào đây..." id="encodefield"></textarea>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}QRCode maker{% endblock %}
+
+{% block description %}Tạo QRCode cho riêng bạn!{% endblock %}
+{% block content %}
+<br>
+<h1 class="title">Tạo QRCode</h1>
+<br>
+<form method="POST">
+	<div class="field">
+		<label class="label">Văn bản</label>
+		<textarea class="textarea" placeholder="Nhập văn bản cho QRCode của bạn" rows="10" required id="text" name="text"></textarea>
+	</div>
+	<div class="field">
+		<div class="control">
+			<button class="button is-primary" type="submit">Tạo QR</button>
+		</div>
+	</div>
+</form>
+<hr>
+{% if qrcode %}
+<p class="content">Đã tạo thành công QRCode</p>
+
+<figure class="image is-128x128">
+	<img src="data:image/png;base64,{{qrcode}}"
+</figure>
+
+{% endif %}
+{% endblock %}
+
+
+																																																												
+
+
+
+<a href="{{qrcode}}">
+	<button class="button is-info">
+		<span class="icon">
+			<i class="fas fa-download"></i>
+		</span>
+		<span>Tải về</span>
+	</button>
+</a>

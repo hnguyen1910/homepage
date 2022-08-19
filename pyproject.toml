@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "python-template"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8.0,<3.9"
+numpy = "^1.22.2"
+quart = "^0.17.0"
+aiosqlite = "^0.17.0"
+python-aternos = "^1.0.5"
+Async-OAuthlib = "^0.0.9"
+qrcode = {extras = ["pil"], version = "^7.3.1"}
+quart-auth = "^0.6.0"
+quart-rate-limiter = "^0.7.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
