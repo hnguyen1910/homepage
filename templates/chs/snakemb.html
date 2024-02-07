@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+  html, body {
+    height: 100%;
+
+  }
+	html {
+		overflow-x:hidden;
+		overflow-y: hidden;
+		overflow: hidden;
+	}
+  body {
+    background: black;
+    display: block;
+    
+
+		
+  }
+  canvas {
+    border: 1px solid white;
+
+  }
+	#sc1,#s,#hs {
+		color:yellow;
+		
+	}
+
+	}
+	#sc1::after,sc2::after {
+		content:"\a";
+		white-space:pre;
+	}
+
+	
+
+
+  </style>
+</head>
+<body>
+
+<p id="sc1">Score:</p><br><p id="s">0</p>; 
+<p id="sc1">Highscore:</p><br><p id="hs">0</p>
+<button onclick="localStorage.removeItem('snake.high');location.reload();">RHS</button>
+<br>
+<canvas id="game" width="80%" height="80%"></canvas>
+<script>
+function resetHS() {
+	localStorage.removeItem("snake.high");
+	location.reload();
+}
+var canvas = document.getElementById('game');
+var context = canvas.getContext('2d');
+var score = document.getElementById("s");
+var highscore = document.getElementById("hs");
+var eat = new Audio("{{url_for('static',filename='files/snakeeat.mp3')}}")
+
+var grid = 16;
+var snake = {
+  x: 160,
+  y: 160,
+  dx: grid,
+  dy: 0,
+  cells: [],
+  maxCells: 4
+};
+var count = 0;
+var apple = {
+  x: 320,
+  y: 320
+};
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+// game loop
+function loop() {
+  requestAnimationFrame(loop);
+
+if (!localStorage.getItem("snake.high")) {
+	localStorage.setItem("snake.high",0)
+	highscore.innerHTML = localStorage.getItem("snake.high")
+} else {
+	highscore.innerHTML = localStorage.getItem("snake.high")
+};
+  // slow game loop to 15 fps instead of 60 - 60/15 = 4
+  if (++count < 5) {
+    return;
+  }
+
+  count = 0;
+  context.clearRect(0,0,canvas.width,canvas.height);
+
+  snake.x += snake.dx;
+  snake.y += snake.dy;
+
+  // wrap snake position on edge of screen
+  if (snake.x < 0) {
+    snake.x = canvas.width - grid;
+  }
+  else if (snake.x >= canvas.width) {
+    snake.x = 0;
+  }
+
+  if (snake.y < 0) {
+    snake.y = canvas.height - grid;
+  }
+  else if (snake.y >= canvas.height) {
+    snake.y = 0;
+  }
+
+  // keep track of where snake has been. front of the array is always the head
+  snake.cells.unshift({x: snake.x, y: snake.y});
+
+  // remove cells as we move away from them
+  if (snake.cells.length > snake.maxCells) {
+    snake.cells.pop();
+  }
+
+  // draw apple
+  context.fillStyle = 'red';
+  context.fillRect(apple.x, apple.y, grid-1, grid-1);
+
+  // draw snake
+  context.fillStyle = 'green';
+  snake.cells.forEach(function(cell, index) {
+    context.fillRect(cell.x, cell.y, grid-1, grid-1);
+
+    // snake ate apple
+    if (cell.x === apple.x && cell.y === apple.y) 
+		{
+			eat.play();
+			score.innerHTML = Number(score.innerHTML)+10;
+      snake.maxCells++;
+      apple.x = getRandomInt(0, 25) * grid;
+      apple.y = getRandomInt(0, 25) * grid;
+    }
+
+    // check collision with all cells after this one (modified bubble sort)
+    for (var i = index + 1; i < snake.cells.length; i++) {
+      
+      // collision. reset game
+      if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+				if (Number(score.innerHTML) > Number(localStorage.getItem("snake.high"))) {
+					localStorage.setItem("snake.high",Number(score.innerHTML))
+				} 
+				score.innerHTML = "0"
+				alert("Gameover!");
+        snake.x = 160;
+        snake.y = 160;
+        snake.cells = [];
+        snake.maxCells = 4;
+        snake.dx = grid;
+        snake.dy = 0;
+
+        apple.x = getRandomInt(0, 25) * grid;
+        apple.y = getRandomInt(0, 25) * grid;
+      }
+    }
+  });
+}
+
+var allowedTime = 200;
+var startX = 0;
+var startY = 0;
+
+document.addEventListener('touchstart', function(e){
+    var touch = e.changedTouches[0]
+    startX = touch.pageX
+    startY = touch.pageY
+    startTime = new Date().getTime()
+    e.preventDefault()
+}, false)
+
+document.addEventListener('touchmove', function(e){
+    e.preventDefault()
+}, false)
+
+document.addEventListener('touchend', function(e){
+    var touch = e.changedTouches[0]
+    distX = touch.pageX - startX
+    distY = touch.pageY - startY
+
+    if (Math.abs(distX) > Math.abs(distY)) {
+      if (distX > 0 && snake.dx === 0) {
+        snake.dx = grid;
+        snake.dy = 0;
+      }
+      else if (distX < 0 && snake.dx === 0) {
+        snake.dx = -grid;
+        snake.dy = 0;
+      }
+    } else {
+      if (distY > 0 && snake.dy === 0) {
+        snake.dy = grid;
+        snake.dx = 0;
+      }
+      else if (distY < 0 && snake.dy === 0) {
+        snake.dy = -grid;
+        snake.dx = 0;
+      }
+    }
+    e.preventDefault();
+
+}, false)
+
+document.addEventListener('keydown', function(e) {
+  // prevent snake from backtracking on itself
+  if (e.which === 37 && snake.dx === 0) {
+    snake.dx = -grid;
+    snake.dy = 0;
+  }
+  else if (e.which === 38 && snake.dy === 0) {
+    snake.dy = -grid;
+    snake.dx = 0;
+  }
+  else if (e.which === 39 && snake.dx === 0) {
+    snake.dx = grid;
+    snake.dy = 0;
+  }
+  else if (e.which === 40 && snake.dy === 0) {
+    snake.dy = grid;
+    snake.dx = 0;
+  }
+});
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHS GAMES</title>
+<strong>Games</strong><br>(SOME LINKS MAY NOT WORK)
+<br><br>
+{% for game in games %}
+{% if game.startswith('https://') %}
+<a href="{{game}}">{{game.split("//")[1]}}</a>
+<br>
+{% else %}
+<strong>{{game}}</strong>
+<br>
+{% endif %}
+{% endfor %}
+MORE .IO GAMES AT <a href='https://www.reddit.com/r/IoGames/wiki/index/'>HERE</a>

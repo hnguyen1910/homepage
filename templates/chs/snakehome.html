@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<style>
+.rainbow-text {
+  background-image: repeating-linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red, violet);
+  text-align: center;
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 24px;
+  animation: rainbow 8s ease infinite;
+}
+
+@keyframes rainbow { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 25%}
+    100%{background-position:0% 50%}
+		</style>
+	</head>
+	<body>
+		<h1>Hi welcome to <p class="rainbow-text">SNAKE!</p></h1>
+		<h3><a href="/chs/snake/mobile">
+	Snake (for mobiles)
+</a><strong>(Recommend play on big screen)</strong>
+			<br><a href="/chs/snake/pc">
+	Snake (for PC)
+</a><br></h3>
+<img src="{{url_for('static',filename='files/snakeexample.jpeg')}}" alt="SnakeGame" height="400" width="600">
+	</body>
+</html>
+

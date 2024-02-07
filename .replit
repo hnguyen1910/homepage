@@ -107,3 +107,7 @@ ignoredPackages = ["unit_tests"]
   # Enable guessing what packages are needed from the code.
   guessImports = true
 
+[auth]
+pageEnabled = false
+buttonEnabled = false
+

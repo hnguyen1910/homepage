@@ -1,41 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}404 Not Found{% endblock %}
-{% block ext %}
-<style>
-* {
-	padding-left: 10px;
-	margin-left:10px;
-
-}
-
-h1 {
-	text-align:center;
-	font-size: 50px;
-	font-family:sans-serif;
-	color:gray;
-}
-
-p {
-	text-align:center;
-}
-	
-h3 {
-	text-align:center;
-	font-family:sans-serif;
-	font-size:20px;
-	
-
-}
-	
-</style>
-
-{% endblock %}
-{% block cpr %}{% endblock %}
+{% block title %}404 Không tìm thấy{% endblock %}
 {% block content %}
-<h1><strong>404</strong></h1>
-<h3><strong>404 Không tìm thấy</strong></h3>
-<p>Hình như bạn bị lạc rồi thì phải,thử quay lại trang trước hoặc đến trang chủ xem</p>
-<div class="field is-grouped has-addons-centered has-addons">
+<div style="height:28vh">
+<h1 class="title has-text-centered"><strong>404</strong></h1>
+<h3 class="subtitle has-text-centered"><strong>404 Không tìm thấy</strong></h3>
+<p class="content">Hình như bạn bị lạc rồi thì phải,thử quay lại trang trước hoặc đến trang chủ xem<br>
+<p class="is size-6">Đường dẫn vừa truy cập: {{request.path}}</p><br>
+<p class="is-size-7 is-italic">Mô tả: {{e.description}}</p>
+</p>
+</div>
+<div class="field">
+<p class="buttons is-centered">
 	<button class="button is-hovered" onclick="history.back()">
 		<span class="icon is-left">
 			<i class="fas fa-arrow-rotate-left"></i>
@@ -50,5 +25,7 @@ h3 {
 			<span>Trang chủ</span>
 		</button>
 	</a>
+</p>
+</div>
 </div>
 {% endblock %}

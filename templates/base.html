@@ -54,23 +54,23 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang='vi'>
 	<head>
-		<meta name='dmca-site-verification' content='Uk9oaHl5dE5CZ3pyM0FaR2lhOUVYZz090' />
 		<meta name="description" content="{% block description %} {% endblock %}">
 
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+		<title>{% block title required %} {% endblock %} - {{ request.url.rpartition("//")[-1].partition("/")[0] }}</title>
+
+		
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" integrity="sha512-HqxHUkJM0SYcbvxUw5P60SzdOTy/QVwA1JJrvaXJv4q7lmbDZCmZaqz01UPOaQveoxfYRv1tHozWGPMcuTBuvQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" integrity="sha512-3J8teBiHrSyaaRBajZyIEtpDsXdPq1gsznKWIVb5CnorQuFhjWGhWe54z8YNnHHr7MZuExb9m5kvf964HiT1Sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://kit.fontawesome.com/0820a2b253.js" crossorigin="anonymous"></script>
-		<title>{% block title required %} {% endblock %} - tins.ml</title>
-		<script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script src="https://kit.fontawesome.com/0820a2b253.js" crossorigin="anonymous"></script>
+		
 		<script>
 var elem = document.documentElement
 function openFS() {
@@ -87,6 +87,22 @@ function openFS() {
   $(".navbar-burger").click(function() {
       $(".navbar-burger").toggleClass("is-active");
       $(".navbar-menu").toggleClass("is-active");
+
+  });
+		});
+
+					$(document).ready(function() {
+
+  $(".nav-btn").click(function() {
+      $(".navbar-dropdown").toggleClass("is-active");
+
+  });
+		});
+
+$(document).ready(function() {
+
+  $(".navbar-dropdown").click(function() {
+      $(".navbar-dropdown").toggleClass("is-active");
 
   });
 		});
@@ -125,9 +141,10 @@ window.addEventListener("offline",function(){
 			checknw(false)
 		});
 			
-		</script>
-		<style>
-			.nor {
+</script>
+<style>
+ 
+				.nor {
 				text-align:center;
 				display:none;
 			}
@@ -137,127 +154,36 @@ window.addEventListener("offline",function(){
 			}
 
 	}
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 
-footer {
-  font-family: Roboto;
+	@media only screen and (max-width: 600px) {
+	.navbar-menu {
+    display: block;
+    opacity: 0;
+
+    position: absolute;   /* or float: left; width: 100%;*/
+    left: 0;
+    right: 0;
+
+    transform: translateY(-50%);
+    transition: all .4s ease-in-out;
+    pointer-events: none;
 }
 
-section {
-  width: 100%;
-  display: inline-block;
-  background: #ccc;
-  height: 60vh;
-  text-align: center;
-  font-size: 22px;
-  font-weight: 700;
-  text-decoration: underline;
-}
-/* Footer links */
-
-.footer-distributed p.footer-links {
-  font-size: 18px;
-  font-weight: bold;
-  color: #ffffff;
-  margin: 0 0 10px;
-  padding: 0;
-  transition: ease .25s;
+.navbar-menu.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
 }
 
-.footer-distributed p.footer-links a {
-  display: inline-block;
-  line-height: 1.8;
-  text-decoration: none;
-  color: inherit;
-  transition: ease .25s;
-}
 
-.footer-distributed .footer-links a:before {
-  content: "·";
-  font-size: 20px;
-  left: 0;
-  color: #fff;
-  display: inline-block;
-  padding-right: 5px;
-}
 
-.footer-distributed .footer-links .link-1:before {
-  content: none;
-}
-.footer-distributed {
-  background-color: #292c2f;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  width: 100%;
-  text-align: left;
-  font: normal 16px sans-serif;
-  padding: 45px 50px;
-}
-
-.footer-distributed .footer-left p {
-	color: #8f9296;
-  font-size: 14px;
-  margin: 0;
-}
-/* Footer links */
-
-}
-
-.footer-distributed .footer-links a:before {
-  content: "·";
-  font-size: 20px;
-  left: 0;
-  color: #fff;
-  display: inline-block;
-  padding-right: 5px;
-}
-
-.footer-distributed .footer-links .link-1:before {
-  content: none;
-}
-
-.footer-distributed .footer-right {
-  float: right;
-  margin-top: 6px;
-  max-width: 180px;
-}
-
-.footer-distributed .footer-right a {
-  display: inline-block;
-  width: 35px;
-  height: 35px;
-  background-color: #33383b;
-  border-radius: 2px;
-  font-size: 20px;
-  color: #ffffff;
-  text-align: center;
-  line-height: 35px;
-  margin-left: 3px;
-  transition:all .25s;
-}
-
-.footer-distributed .footer-right a:hover{transform:scale(1.1); -webkit-transform:scale(1.1);}
-
-.footer-distributed p.footer-links a:hover{text-decoration:underline;}
-
-/* Media Queries */
-
-@media (max-width: 600px) {
-  .footer-distributed .footer-left, .footer-distributed .footer-right {
-    text-align: center;
-  }
-  .footer-distributed .footer-right {
-    float: none;
-    margin: 0 auto 20px;
-  }
-  .footer-distributed .footer-left p.footer-links {
-    line-height: 1.8;
-  }
-}
-		</style>
-	{% block ext_head %} {% endblock %}
+</style>
+	{% block ext_head %}{% endblock %}
 	</head>
+
+	
 	<body>
+<!-- Main divs -->
 <div class="offline nor" id="offline">
 	<h1>Bạn đã offline</h1>
 	<p>Vui lòng kết nối mạng để tiếp tục!</p>
@@ -273,7 +199,7 @@ section {
 	<nav class="navbar is-light" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="{{url_for('home')}}">
-			Tins.ml
+			{{ domain }}
     </a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarm">
@@ -290,21 +216,58 @@ section {
 			</a>
 			<div class="navbar-item has-dropdown is-hoverable">
 				<a class="navbar-link nav-btn">
-					Dự án
+					Đồ chơi
 				</a>
 				<div class="navbar-dropdown">
-					<a class="navbar-item" href="https://r.tins.ml/">
-						Shortener
+					<a class="navbar-item" href="https://r.{{domain}}/">
+						Link Shortener
 					</a>
+					<a class="navbar-item" href="https://d.{{domain}}/">
+						Discord Shortener
+					</a>
+				<a class="navbar-item" href="/chs">
+					Chs (games 2 play in IT room)
+					</a>
+					<a class="navbar-item " href="https://nopaste.{{domain}}
+							/" >
+						Nopaste
+					</a>
+				<a class="navbar-item " href="https://paste.{{domain}}
+							/" >
+							Npaste (BETA 
+						<span class="icon">
+							<i class="fas fa-flask"></i>
+						</span>)
+					</a>
+						<a class="navbar-item " href="https://fs.{{domain}}
+							/" >
+							<div class="rtnav">
+								File link generator (BETA 
+						<span class="icon">
+							<i class="fas fa-flask"></i>
+						</span>)
+							</div>
+					</a>
+
+					
+					<!--<a class="navbar-item" href="/mcserver">
+						Minecraft Server (EXP 
+						<span class="icon">
+							<i class="far fa-flask"></i>
+						</span>
+						)
+					</a>-->
+					
 					<hr class="navbar-divider">
-					<a class="navbar-item">
+					<a class="navbar-item" href="about:blank">
 						Coming more soon...
 					</a>
 				</div>
 				
 			</div>
 			</a>
-			<a class="navbar-item" href="{{url_for('status')}}">
+			<!-- <a class="navbar-item" href="https://status.{{domain}}"> -->
+			<a class="navbar-item" href='https://github.com/hnguyen1910/status/blob/master/README.md'>
 				Tình trạng
 			</a>
 		</div>
@@ -328,10 +291,15 @@ section {
 				Thông báo: {{message}}
 			</div>
         {% endfor %}
-	<hr>
-			{% block content %} {% endblock %}
+			{% if get_flashed_messages() %}
+			<hr>
+			{% endif %}
+
+<div class="section">
+			{% block content %}{% endblock %}
+</div>
 		</div>
-<hr>
+	{% block ct_nobulma %}{% endblock %}
 	{% block cpr %}
 <!--	<footer class="footer">
 	<div class="content has-text-centered">
@@ -342,12 +310,14 @@ section {
 	</footer>
 {% endblock %} -->
 </div>
-	<footer class="footer footer-distributed">
+		</div>
+	<!-- <footer class="footer footer-distributed" id="footer">
 
-			<div class="footer-right">
+			<div class="footer">
 <a href="//www.dmca.com/Protection/Status.aspx?ID=e38a5bfb-8c28-4afe-816a-ef77f7f6109a" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w100-5x1-01.png?ID=e38a5bfb-8c28-4afe-816a-ef77f7f6109a"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
 
 				<a href="https://github.com/hnguyen1910/"><span class="icon"><i class="fa fa-github"></i></span></a>
+				<a href="mailto:admin@ti.nz.eu.org"><span class="icon"><i class="fa fa-envelope"></i></span></a>
 
 			</div>
 
@@ -355,16 +325,45 @@ section {
 
 				<p class="footer-links">
 					<a class="link-1" href="{{ url_for('home') }}">Trang chủ</a>
-				</p>
+				</p>:
 
 				<p>Hi everyone :D</p>
 			</div>
 
-		</footer>
+		</footer> -->
+		<footer class='footer has-background-black'>
+        <div class="container ">
+          <div class="is-flex is-align-items-center">
+            <div class="mr-auto mb-2">
+              <a class="is-inline-block has-text-white" href="/">
+								<h1>tinvn.eu.org</h1>
+              </a>
+            </div>
+            <div>
+              <ul class="is-flex is-flex-wrap-wrap is-align-items-center is-justify-content-center">
+                <li class="mr-4"><a class="button is-black has-text-white" href="/">Trang chủ</a></li>
+                <li class="mr-4"><a class="button is-black" href="/about">Dịch vụ</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+			<hr style='background-color:#333333;height:0.5px;'>
+        <div class="container">
+          <div class="is-flex-tablet is-justify-content-between is-align-items-center">
+            <p class='has-text-black-ter'>All rights reserved © TinVN</p>
+
+						<p class="buttons are-small ml-auto" style='max-width:180px;'>
+			<a class="button is-responsive is-dark mr-4" href="https://github.com/hnguyen1910/"><span class="icon"><i class="fa fa-github"></i></span></a>
+			<a class="button is-responsive is-dark mr-4" href="mailto:admin@ti.nz.eu.org"><span class="icon"><i class="fa fa-envelope"></i></span></a>
+<a href="//www.dmca.com/Protection/Status.aspx?ID=e38a5bfb-8c28-4afe-816a-ef77f7f6109a" title="DMCA.com Protection Status" class="dmca-badge button is-responsive is-dark"> <img src ="https://images.dmca.com/Badges/dmca-badge-w100-5x1-01.png?ID=e38a5bfb-8c28-4afe-816a-ef77f7f6109a"  alt="DMCA.com Protection Status" /></a> 
+							<script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+						</p>
+          </div>
+        </div>
+      </footer>
+	</div>
 	</body>
 </html>
 
 
-		
-	</body>
-</html>
+

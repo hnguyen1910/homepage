@@ -30,3 +30,12 @@ async def make_qrcode(text):
 	img = base64.b64encode(buffer.getvalue())
 	img=str(img).replace(" ","")
 	return img
+
+def get_games():
+	fchs=open('chslinks.txt','r').readlines()
+	games = list()
+	for t in fchs:
+		if t.endswith('\n'):
+			t = t[:-1]
+		games.append(t)
+	return games

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Về {{domain}}{% endblock %}
+{% block description %}
+:>
+{% endblock %}
+{% block ext_head %}
+
+<style>
+	.bighello {
+		position: relative;
+		font-size:9vw;
+		letter-spacing:5px;
+		color: #3d535f;
+	}
+	.bighello::after {
+		position:absolute;
+		width: 45px;
+		height:4px;
+		bottom:10px;
+		background-color:#2f3641;
+		content: " ";
+	}
+	.iam {
+		font-weight:900;
+		font-size:10vw;
+	}
+	.t {
+		color:#ff3333;
+		font-weight:900;
+		font-size:14vw;
+		 height: 100px;
+  padding: 10px;
+	}
+	.wrap {
+		display: grid;
+    grid-template-columns:1fr;
+    grid-template-rows: 1fr 2fr 3fr;
+	}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+	$(document).ready(function() {
+  var text =new Typed('.t',{
+		strings:
+			['Student',
+			 'Coder',
+			 'Gamer',
+			 '404 error!!!'
+			],
+		cursorChar: '_',
+		loop:true,
+		backSpeed:80,
+		typeSpeed:100,
+		backDelay:1500,
+	});
+});
+	
+</script>
+{% endblock %}
+{% block ct_nobulma %}
+<span class="warp bighello">Chào</span>
+<h1 class="warp iam">Tôi là</h1><span class="wrap t"></span></h1>
+{% endblock %}
